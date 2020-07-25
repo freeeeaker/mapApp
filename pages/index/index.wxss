@@ -1,0 +1,30 @@
+/**index.wxss**/
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+}
+.map {
+  width: 100%;
+  height: calc(100vh - 48px);
+}
+.btn-group {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  padding: 0;
+}
+.canvas-box {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 48px)
+}
+.canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -150px
+}
+.canvas2 {
+  z-index: 10;
+}

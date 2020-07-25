@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+  <map
+    wx:if="{{showMap}}"
+    class="map"
+    id="map"
+    longitude="{{longitude}}"
+    scale="14"
+    latitude="{{latitude}}"
+    markers="{{markers}}"
+    enable-zoom="{{false}}"
+    show-location
+  >
+  </map>
+ <view class="canvas-box" wx:else>
+    <canvas id="canvas" type="2d" canvas-id="canvas" class="canvas"></canvas>
+    <canvas id="canvas2" canvas-id="canvas2" class="canvas canvas2"></canvas></view>
+  <view class="btn-group">
+    <button class="btn" bindtap="chooseImage" type="primary">{{btnText}}</button>
+  </view>
+</view>
