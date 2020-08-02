@@ -95,16 +95,24 @@ Page({
     canvasWidth: 0,
     canvasHeight: 0,
     pixelRatio: 1,
-    btnText: '选择图片'
+    btnText: '选择图片',
+    zoom: 14,
   },
   //事件处理函数
   chooseImage: function() {
     const _this = this;
     if (this.data.showMap) {
-      this.setData({ showMap: false, btnText: '选择图片' })
-      return;
+      this.setData({ showMap: false, btnText: '关闭图片' })
     } else {
-      this.setData({ btnText: '关闭图片' })
+      this.setData({ btnText: '选择图片', showMap: true, zoom: 16 })
+      const marker = this.data.markers[0]
+      this.setData({ markers: [Object.assign({}, marker, {
+          iconPath: './circle2.png',
+          width: 180,
+          height: 120,
+        })]
+      })
+      return
     }
     wx.chooseImage({
       count: 1,
@@ -226,16 +234,18 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success({ longitude, latitude }) {
-        _this.setData({ markers: [
-          {
-            iconPath: './circle.png',
-            width: 100,
-            height: 60,
-            longitude,
-            latitude,
-            rotate: 0
-          }
-        ], longitude, latitude, lastLongitude: longitude, lastLatitude: latitude })
+        _this.setData({
+          longitude,
+          latitude,
+          markers: [{
+              iconPath: './circle.png',
+              width: 100,
+              height: 60,
+              longitude,
+              latitude,
+              rotate: 0
+          }]
+        })
       }
     })
     wx.startLocationUpdate({
@@ -252,6 +262,9 @@ Page({
           // alpha 是水平
           // x轴 -
           // y轴 |
+          if (_this.data.zoom === 16) {
+            return
+          }
           _this.setData({
             markers: [
               {

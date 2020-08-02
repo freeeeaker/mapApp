@@ -5,7 +5,7 @@
     class="map"
     id="map"
     longitude="{{longitude}}"
-    scale="14"
+    scale="{{zoom}}"
     latitude="{{latitude}}"
     markers="{{markers}}"
     enable-zoom="{{false}}"
